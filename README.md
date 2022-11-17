@@ -14,9 +14,9 @@
 
 </div>
 
-## Overview
+## NOTE: This is a fork of a non-maintained and will be opionated towards my (pthomison) usage. Feel free to use if it is helpful, but be wary of potential breaking changes
 
-NOTE: This is a fork of a non-maintained and will be opionated towards my (pthomison) usage. Feel free to use if it is helpful, but be wary of potential breaking changes
+## Overview
 
 **Featured in issues [327](https://golangweekly.com/issues/327) and [347](https://golangweekly.com/issues/347) of Golang Weekly 🎉**
 
