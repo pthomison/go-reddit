@@ -44,3 +44,22 @@ test-coverage: fmt vet lint
 	@go test -v -race -short -timeout $(TEST_TIMEOUT)s $(ARGS) -coverprofile=coverage.out $(LIST_PKG)
 	@go tool cover -func=coverage.out
 	@go tool cover -html=coverage.out -o coverage.html
+
+# pthomison release logic
+
+CURRENT_TAG=$(shell git tag --sort version:refname | tail -n 1)
+
+first_release:
+	git tag v0.0.1
+	git push origin v0.0.1
+
+rev_release:
+	git tag $(shell exoskeleton rev -i $(CURRENT_TAG))
+	git push origin $(shell exoskeleton rev -i $(CURRENT_TAG))
+
+release:
+	@if [[ "$(CURRENT_TAG)" == "" ]]; then $(MAKE) first_release; else $(MAKE) rev_release; fi
+
+
+
+
