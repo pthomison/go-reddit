@@ -15,7 +15,6 @@ import (
 	"time"
 
 	"github.com/google/go-querystring/query"
-	"golang.org/x/oauth2"
 )
 
 const (
@@ -95,7 +94,8 @@ type Client struct {
 	Widget     *WidgetService
 	Wiki       *WikiService
 
-	oauth2Transport *oauth2.Transport
+	// staticcheck reports this field is unused; commenting out for the time being
+	// oauth2Transport *oauth2.Transport
 
 	onRequestCompleted RequestCompletionCallback
 }

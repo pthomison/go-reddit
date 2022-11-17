@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"os/signal"
@@ -10,8 +9,6 @@ import (
 
 	"github.com/pthomison/go-reddit/reddit"
 )
-
-var ctx = context.Background()
 
 func main() {
 	sig := make(chan os.Signal, 1)
