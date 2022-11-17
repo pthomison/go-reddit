@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -118,7 +117,7 @@ func TestEmojiService_Upload(t *testing.T) {
 	require.NoError(t, err)
 	blob = fmt.Sprintf(blob, uploadURL)
 
-	emojiFile, err := ioutil.TempFile("/tmp", "emoji*.png")
+	emojiFile, err := os.CreateTemp("/tmp", "emoji*.png")
 	require.NoError(t, err)
 	defer func() {
 		emojiFile.Close()

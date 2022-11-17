@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -1361,7 +1360,7 @@ func TestSubredditService_RemoveMobileIcon(t *testing.T) {
 func TestSubredditService_UploadImage(t *testing.T) {
 	client, mux := setup(t)
 
-	imageFile, err := ioutil.TempFile("/tmp", "emoji*.png")
+	imageFile, err := os.CreateTemp("/tmp", "emoji*.png")
 	require.NoError(t, err)
 	defer func() {
 		imageFile.Close()
@@ -1407,7 +1406,7 @@ func TestSubredditService_UploadImage(t *testing.T) {
 func TestSubredditService_UploadHeader(t *testing.T) {
 	client, mux := setup(t)
 
-	imageFile, err := ioutil.TempFile("/tmp", "emoji*.png")
+	imageFile, err := os.CreateTemp("/tmp", "emoji*.png")
 	require.NoError(t, err)
 	defer func() {
 		imageFile.Close()
@@ -1453,7 +1452,7 @@ func TestSubredditService_UploadHeader(t *testing.T) {
 func TestSubredditService_UploadMobileHeader(t *testing.T) {
 	client, mux := setup(t)
 
-	imageFile, err := ioutil.TempFile("/tmp", "emoji*.png")
+	imageFile, err := os.CreateTemp("/tmp", "emoji*.png")
 	require.NoError(t, err)
 	defer func() {
 		imageFile.Close()
@@ -1499,7 +1498,7 @@ func TestSubredditService_UploadMobileHeader(t *testing.T) {
 func TestSubredditService_UploadMobileIcon(t *testing.T) {
 	client, mux := setup(t)
 
-	imageFile, err := ioutil.TempFile("/tmp", "emoji*.jpg")
+	imageFile, err := os.CreateTemp("/tmp", "emoji*.jpg")
 	require.NoError(t, err)
 	defer func() {
 		imageFile.Close()
@@ -1545,7 +1544,7 @@ func TestSubredditService_UploadMobileIcon(t *testing.T) {
 func TestSubredditService_UploadImage_Error(t *testing.T) {
 	client, mux := setup(t)
 
-	imageFile, err := ioutil.TempFile("/tmp", "emoji*.jpg")
+	imageFile, err := os.CreateTemp("/tmp", "emoji*.jpg")
 	require.NoError(t, err)
 	defer func() {
 		imageFile.Close()
