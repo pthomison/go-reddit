@@ -29,25 +29,25 @@ func TestWithUserAgent(t *testing.T) {
 }
 
 func TestWithBaseURL(t *testing.T) {
-	c, err := NewClient(Credentials{}, WithBaseURL(":"))
+	_, err := NewClient(Credentials{}, WithBaseURL(":"))
 	urlErr, ok := err.(*url.Error)
 	require.True(t, ok)
 	require.Equal(t, "parse", urlErr.Op)
 
 	baseURL := "http://localhost:8080"
-	c, err = NewClient(Credentials{}, WithBaseURL(baseURL))
+	c, err := NewClient(Credentials{}, WithBaseURL(baseURL))
 	require.NoError(t, err)
 	require.Equal(t, baseURL, c.BaseURL.String())
 }
 
 func TestWithTokenURL(t *testing.T) {
-	c, err := NewClient(Credentials{}, WithTokenURL(":"))
+	_, err := NewClient(Credentials{}, WithTokenURL(":"))
 	urlErr, ok := err.(*url.Error)
 	require.True(t, ok)
 	require.Equal(t, "parse", urlErr.Op)
 
 	tokenURL := "http://localhost:8080/api/v1/access_token"
-	c, err = NewClient(Credentials{}, WithTokenURL(tokenURL))
+	c, err := NewClient(Credentials{}, WithTokenURL(tokenURL))
 	require.NoError(t, err)
 	require.Equal(t, tokenURL, c.TokenURL.String())
 }
