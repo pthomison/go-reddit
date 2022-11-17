@@ -34,10 +34,6 @@ const (
 	headerAccept      = "Accept"
 	headerUserAgent   = "User-Agent"
 
-	// headerRateLimitRemaining = "x-ratelimit-remaining"
-	// headerRateLimitUsed      = "x-ratelimit-used"
-	// headerRateLimitReset     = "x-ratelimit-reset"
-
 	headerRateLimitRemaining = "X-Ratelimit-Remaining"
 	headerRateLimitUsed      = "X-Ratelimit-Used"
 	headerRateLimitReset     = "X-Ratelimit-Reset"

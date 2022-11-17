@@ -577,6 +577,10 @@ type Subreddit struct {
 	Favorite        bool `json:"user_has_favorited"`
 }
 
+func (s *Subreddit) String() string {
+	return s.Name
+}
+
 // PostAndComments is a post and its comments.
 type PostAndComments struct {
 	Post     *Post      `json:"post"`
