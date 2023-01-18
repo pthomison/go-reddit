@@ -1,4 +1,4 @@
-package utils
+package redditutils
 
 import (
 	"github.com/pthomison/awsutils"

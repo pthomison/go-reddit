@@ -1,4 +1,4 @@
-package utils
+package redditutils
 
 func RequestLimit(current int, total int) int {
 	d := total - current
