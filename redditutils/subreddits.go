@@ -15,7 +15,7 @@ func (c *Client) SlurpPopularSubreddits(limit int) map[string]*reddit.Subreddit 
 
 	for i := 0; i < limit; i += maxCountPerRequest {
 
-		subreddits := c.PopularSubreddits(&reddit.ListSubredditOptions{
+		subreddits := c.GetPopularSubreddits(&reddit.ListSubredditOptions{
 			ListOptions: reddit.ListOptions{
 				Limit: RequestLimit(i, limit),
 				After: after,
@@ -33,7 +33,7 @@ func (c *Client) SlurpPopularSubreddits(limit int) map[string]*reddit.Subreddit 
 	return r
 }
 
-func (c *Client) PopularSubreddits(opts *reddit.ListSubredditOptions) []*reddit.Subreddit {
+func (c *Client) GetPopularSubreddits(opts *reddit.ListSubredditOptions) []*reddit.Subreddit {
 	subreddits, response, err := c.Subreddit.Popular(context.Background(), opts)
 
 	errcheck.Check(err)
