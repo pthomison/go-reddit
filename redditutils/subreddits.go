@@ -11,9 +11,8 @@ func (c *Client) SlurpPopularSubreddits(limit int) map[string]*reddit.Subreddit 
 
 	r := make(map[string]*reddit.Subreddit)
 	after := ""
-	maxCountPerRequest := 100
 
-	for i := 0; i < limit; i += maxCountPerRequest {
+	for i := 0; i < limit; i += MAX_LIMIT_PER_REQUEST {
 
 		subreddits := c.GetPopularSubreddits(&reddit.ListSubredditOptions{
 			ListOptions: reddit.ListOptions{

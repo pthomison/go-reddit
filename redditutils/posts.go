@@ -11,22 +11,12 @@ func (c *Client) SlurpTopPosts(subreddit string, timeframe string, limit int) ma
 
 	r := make(map[string]*reddit.Post)
 	after := ""
-	maxCountPerRequest := 100
 
-	for i := 0; i < limit; i += maxCountPerRequest {
-
-		reqLimit := func(cur int, lim int) int {
-			d := lim - cur
-			if d < maxCountPerRequest {
-				return d
-			} else {
-				return maxCountPerRequest
-			}
-		}
+	for i := 0; i < limit; i += MAX_LIMIT_PER_REQUEST {
 
 		posts := c.GetTopPosts(subreddit, &reddit.ListPostOptions{
 			ListOptions: reddit.ListOptions{
-				Limit: reqLimit(i, limit),
+				Limit: RequestLimit(i, limit),
 				After: after,
 			},
 			Time: timeframe,
