@@ -48,3 +48,37 @@ func (c *Client) GetTopPosts(subreddit string, opts *reddit.ListPostOptions) []*
 
 	return posts
 }
+
+func (c *Client) SlurpUserPosts(username string, limit int) []*reddit.Post {
+
+	r := []*reddit.Post{}
+	after := ""
+
+	for i := 0; i < limit; i += MAX_LIMIT_PER_REQUEST {
+
+		posts := c.GetUserPosts(username, &reddit.ListUserOverviewOptions{
+			ListOptions: reddit.ListOptions{
+				Limit: RequestLimit(i, limit),
+				After: after,
+			},
+		})
+
+		if len(posts) == 0 {
+			return r
+		}
+
+		after = posts[len(posts)-1].FullID
+
+		r = append(r, posts...)
+	}
+
+	return r
+}
+
+func (c *Client) GetUserPosts(username string, opts *reddit.ListUserOverviewOptions) []*reddit.Post {
+	posts, response, err := c.User.PostsOf(context.Background(), username, opts)
+	errcheck.Check(err)
+	reddit.CheckResponse(response.Response)
+
+	return posts
+}
