@@ -30,6 +30,10 @@ func (c *Client) SlurpUserComments(username string, limit int) []*reddit.Comment
 			},
 		})
 
+		if len(comments) == 0 {
+			return r
+		}
+
 		after = comments[len(comments)-1].FullID
 
 		r = append(r, comments...)

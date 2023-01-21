@@ -22,6 +22,10 @@ func (c *Client) SlurpPopularSubreddits(limit int) map[string]*reddit.Subreddit 
 			Sort: "activity",
 		})
 
+		if len(subreddits) == 0 {
+			return r
+		}
+
 		after = subreddits[len(subreddits)-1].FullID
 
 		for _, p := range subreddits {

@@ -22,6 +22,10 @@ func (c *Client) SlurpTopPosts(subreddit string, timeframe string, limit int) ma
 			Time: timeframe,
 		})
 
+		if len(posts) == 0 {
+			return r
+		}
+
 		after = posts[len(posts)-1].FullID
 
 		for _, p := range posts {
